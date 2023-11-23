@@ -8,12 +8,9 @@
 import Foundation
 import Alamofire
 
-class CovidCAPIService{
+class CovidAPIService{
     static let shared = CovidAPIService ()
     
-    func getCovidList() -> CovidListRequirement{};
-    
-    func getCovidInfo() -> CovidInfoRequirement{};
     
 }
 

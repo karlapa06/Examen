@@ -9,9 +9,9 @@ import Foundation
 import Alamofire
 
 class NetworkAPIService{
-    static let share = NetworkAPIService()
+    static let shared = NetworkAPIService()
     
-    let apiKey = OqJKGRTXDp+zahzsRWxK0A==tGnhnP7hJ6FD9CJO
+    let apiKey = "OqJKGRTXDp+zahzsRWxK0A==tGnhnP7hJ6FD9CJO"
     
     func getCovid(url: URL, Limit: Int) async -> CovidC? {
             let parameters : Parameters = [
