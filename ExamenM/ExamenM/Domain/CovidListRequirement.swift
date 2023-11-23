@@ -7,15 +7,15 @@
 
 import Foundation
 
-protocol CovidCListRequirementProtocol {
-    func getCovidList(limit: Int) async -> CovidC?
+protocol CovidListRequirementProtocol {
+    func getCovidList(limit: Int) async -> Covid?
 }
 
-class CovidCListRequirement: CovidCListRequirementProtocol {
+class CovidListRequirement: CovidListRequirementProtocol {
     
     static let shared = CovidListRequirement()
 
-        func getCovidList(limit: Int) async -> CovidC? {
+        func getCovidList(limit: Int) async -> Covid? {
             return await dataRepository.getCovidList(limit: limit)
         }
         

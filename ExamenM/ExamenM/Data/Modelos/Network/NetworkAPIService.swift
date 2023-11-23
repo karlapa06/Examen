@@ -13,7 +13,7 @@ class NetworkAPIService{
     
     let apiKey = "OqJKGRTXDp+zahzsRWxK0A==tGnhnP7hJ6FD9CJO"
     
-    func getCovid(url: URL, Limit: Int) async -> CovidC? {
+    func getCovid(url: URL, Limit: Int) async -> Covid? {
             let parameters : Parameters = [
                 "limit" : Limit
             ]
@@ -27,8 +27,10 @@ class NetworkAPIService{
             switch response.result{
             case.success(let data):
                 do {
-                    return try JSONDecoder().decode(CovidC.self, from: data)
+                    print(String(data: data, encoding: .ascii) ?? "")
+                    return try JSONDecoder().decode(Covid.self, from: data)
                 } catch {
+                    debugPrint(error)
                     return nil
                 }
             case let .failure(error):

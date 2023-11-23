@@ -7,15 +7,16 @@
 
 import Foundation
 
-struct Covid: Codable{
-    var count : Int
-    var results : [CovidC]
+struct Covid: Identifiable, Decodable {
+    var id: UUID = UUID()
+    var country : String
+    var region : String
+    var results : [String: CovidCases]
 }
 
-struct CovidC: Codable {
-    var country : String?
-    var region : String?
-    var Date: Int
+struct CovidCases: Codable, Identifiable {
+    var id = UUID()
+    var Date: String
     var total: Int
     var new: Int
 }

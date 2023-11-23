@@ -25,7 +25,7 @@ class CovidRepository: CovidAPIProtocol{
         self.nservice = nservice
     }
         
-    func getCovidList(limit: Int) async -> CovidC? {
+    func getCovidList(limit: Int) async -> Covid? {
         let apiInstance = Api()
         return await nservice.getCovid(url: URL(string:"\(apiInstance.base)\(Api.routes.country)")!,Limit: limit)
     }
