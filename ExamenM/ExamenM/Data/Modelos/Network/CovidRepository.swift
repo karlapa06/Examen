@@ -8,10 +8,10 @@
 import Foundation
 
 struct Api {
-    let base = "https://api.api-ninjas.com/v1/covid19?"
+    let base = "https://api.api-ninjas.com/v1/"
     
     struct routes {
-        static let country = "&country=country"
+        static let covid = "covid19"
     }
 
 }
@@ -25,8 +25,8 @@ class CovidRepository: CovidAPIProtocol{
         self.nservice = nservice
     }
         
-    func getCovidList(limit: Int) async -> Covid? {
+    func getCovidList(country: String) async -> [Covid]? {
         let apiInstance = Api()
-        return await nservice.getCovid(url: URL(string:"\(apiInstance.base)\(Api.routes.country)")!,Limit: limit)
+        return await nservice.getCovid(url: URL(string:"\(apiInstance.base)\(Api.routes.covid)")!, country: country)
     }
 }

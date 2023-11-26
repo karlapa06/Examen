@@ -8,22 +8,22 @@
 import Foundation
 
 protocol CovidListRequirementProtocol {
-    func getCovidList(limit: Int) async -> Covid?
+    func getCovidList(country: String) async -> [Covid]?
 }
 
 class CovidListRequirement: CovidListRequirementProtocol {
-    
     static let shared = CovidListRequirement()
+    let dataRepository: CovidRepository
+    
+    init(dataRepository: CovidRepository = CovidRepository.shared) {
+        self.dataRepository = dataRepository
+    }
 
-        func getCovidList(limit: Int) async -> Covid? {
-            return await dataRepository.getCovidList(limit: limit)
-        }
-        
-        let dataRepository: CovidRepository
-        
-        init(dataRepository: CovidRepository = CovidRepository.shared) {
-            self.dataRepository = dataRepository
-        }
+    
+    func getCovidList(country: String) async -> [Covid]? {
+        return await dataRepository.getCovidList(country: country)
+    }
+    
 }
 
 

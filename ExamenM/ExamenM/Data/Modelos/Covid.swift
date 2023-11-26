@@ -7,16 +7,17 @@
 
 import Foundation
 
-struct Covid: Identifiable, Decodable {
+struct Covid: Identifiable, Codable {
     var id: UUID = UUID()
     var country : String
     var region : String
-    var results : [String: CovidCases]
+    var cases : [String: CovidCases]
+    enum CodingKeys: String, CodingKey {
+        case country, region, cases
+    }
 }
 
-struct CovidCases: Codable, Identifiable {
-    var id = UUID()
-    var Date: String
+struct CovidCases: Codable {
     var total: Int
     var new: Int
 }

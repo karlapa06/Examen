@@ -9,14 +9,16 @@ import Foundation
 
 class CovidListViewModel: ObservableObject {
     @Published var covidList = [Covid]()
+    @Published var country: String
     
     var covidListRequirement: CovidListRequirement
     
     init(covidListRequirement: CovidListRequirement = CovidListRequirement.shared) {
         self.covidListRequirement = covidListRequirement
+        self.country = "mexico"
     }
     
-    func getCovidList(country: String) async {
-        self.covidList = await self.covidListRequirement.getCovidList(limit: limit)
+    func getCovidList() async {
+        self.covidList = await self.covidListRequirement.getCovidList(country: country) ?? []
     }
 }
