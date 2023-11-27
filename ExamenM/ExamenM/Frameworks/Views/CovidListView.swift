@@ -34,7 +34,6 @@ struct CovidListView: View {
                                                    ForEach(data.cases.sorted(by: { $0.key < $1.key }), id: \.key) { (date, cases) in
                                                                Text("Date: \(date), Total: \(cases.total), New: \(cases.new)")
                                                            }
-
                             }
                         }
             
