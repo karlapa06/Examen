@@ -11,6 +11,7 @@ import Foundation
 class CovidListViewModel: ObservableObject {
     // Lista de datos de COVID
     @Published var covidList = [Covid]()
+    
     // País actual seleccionado (por defecto, México)
     @Published var country: String
     

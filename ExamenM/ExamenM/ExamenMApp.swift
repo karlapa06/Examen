@@ -11,7 +11,7 @@ import SwiftUI
 struct ExamenMApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CovidViewModel(viewModel: CovidListViewModel())
         }
     }
 }
