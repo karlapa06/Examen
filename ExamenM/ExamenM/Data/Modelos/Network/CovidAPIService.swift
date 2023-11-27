@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 class CovidAPIService{
+    // Singleton instance
     static let shared = CovidAPIService ()
     
     
