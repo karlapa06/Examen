@@ -13,8 +13,25 @@ struct CovidListView: View {
     @StateObject var viewModel: CovidListViewModel
     var body: some View {
         VStack {
-           // TextField("País", text: $viewModel.country)
-            Text("Ejemplo")
+            Text("Análisis de los datos de covid")
+                            .font(.headline)
+                        ZStack{
+                            GroupBox{
+                                Spacer().frame(height: 80)
+                                Image("cov")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: .infinity, height: 100)
+                            }
+                        }
+                        Spacer().frame(height: 100)
+                       
+                        List {
+                            ForEach(viewModel.covidList) { data in
+                                let totalCases = data.cases.values.reduce(0) { $0 + $1.total }
+                                       Text("Total Cases: \(totalCases)")
+                            }
+                        }
             
            
         }.onAppear {
