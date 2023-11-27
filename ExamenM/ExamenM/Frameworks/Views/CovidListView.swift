@@ -7,38 +7,44 @@
 
 import SwiftUI
 import UIKit
-import Charts
 
 struct CovidListView: View {
     @StateObject var viewModel: CovidListViewModel
     var body: some View {
         VStack {
+            // Encabezado
             Text("Análisis de los datos de covid")
                             .font(.headline)
-                        ZStack{
-                            GroupBox{
-                                Spacer().frame(height: 80)
-                                Image("cov")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: .infinity, height: 100)
-                            }
-                        }
-                        Spacer().frame(height: 100)
-                       
-                        List {
-                            ForEach(viewModel.covidList) { data in
-                                let totalCases = data.cases.values.reduce(0) { $0 + $1.total }
-                                       Text("Total Cases: \(totalCases)")
-                                Text("Region: \(data.country)")
-                                                   ForEach(data.cases.sorted(by: { $0.key < $1.key }), id: \.key) { (date, cases) in
-                                                               Text("Date: \(date), Total: \(cases.total), New: \(cases.new)")
-                                                           }
+            // Imagen de fondo
+            ZStack{
+                GroupBox{
+                    Spacer().frame(height: 80)
+                    Image("cov")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: .infinity, height: 100)
+                }
+            }
+            Spacer().frame(height: 100)
+            
+            // Lista de datos para mostrar la informacion
+            List {
+                ForEach(viewModel.covidList) { data in
+                    // Cálculo del total de casos
+                    let totalCases = data.cases.values.reduce(0) { $0 + $1.total }
+                    // Mostrar el total de casos y la región
+                    Text("Total Cases: \(totalCases)")
+                    Text("Region: \(data.country)")
+                    // Detalles por fecha
+                    ForEach(data.cases.sorted(by: { $0.key < $1.key }), id: \.key) { (date, cases) in
+                        Text("Date: \(date), Total: \(cases.total)")
+                                }
                             }
                         }
             
            
         }.onAppear {
+            // Cargar datos al aparecer la vista
             Task {
                 await viewModel.getCovidList()
             }
